@@ -86,8 +86,8 @@ int main()
 	  sendto(sockfd, (const char *)buffer, strlen(buffer), MSG_CONFIRM, (const struct sockaddr *) &servaddr, sizeof(servaddr));
 	  // Ping is receieved back from server by client 
 	  n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), 0, (struct sockaddr *) &cliaddr, &len);
-	  
-	  printf("Ping Message %d\n", id);
+	  // Notify user of which ping is being sent 
+	  printf("Ping Message Count %d\n", id);
 	  // id keeps track of ping messages reveived  
 	  id++;
 	  // Duration it takes for the client to receieve ping from server
@@ -112,7 +112,7 @@ int main()
 	    printf("Packet Was Lost\n");
           } else {
 	  // If packet was not lost display trip time   
-	    printf("Round Trip Time Delay In Microseconds: %i\n", microseconds);
+	    printf("Round Trip Time Delay In Microseconds(ms): %i\n", microseconds);
 	  }
 	  // Visual divider
           printf("-----------\n");
@@ -123,9 +123,9 @@ int main()
             close(sockfd);
           }
     }
-    // Clsoe socket
+    // Close socket
     close(sockfd);
     return 0;	
-	}	  
+}	  
 	  
 	  
